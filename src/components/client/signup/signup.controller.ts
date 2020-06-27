@@ -1,26 +1,28 @@
 import {Request, Response} from "express";
 import {getRepository} from "typeorm";
-import ISignupDTO, {AccountType} from "./signup.dto";
+import ISignupDTO, {AccountType, IVerifyEmail} from "./signup.dto";
 import Clients from "../../../entity/Clients";
 import Accounts from "../../../entity/Accounts";
 import bcrypt from "bcryptjs";
+import sendEmail from "../../../utils/sendEmail";
 
 export const clientSignUp = async (req: Request, res: Response) => {
 
     try {
 
-        const { email, password, accountType } = <ISignupDTO>req.body;
+        const {email, password, accountType} = <ISignupDTO>req.body;
 
-        let checkIfUserAlreadyRegistered =  await getRepository(Clients)
+        let checkIfUserAlreadyRegistered = await getRepository(Clients)
             .createQueryBuilder("client")
             .where("email = :email", {email})
             .getCount();
 
         if (!checkIfUserAlreadyRegistered) {
 
-            let hashPassword = await bcrypt.hash(password,10);
+            let verificationOTP = (Math.floor(Math.random() * 9000) + 1000).toString();
+            let hashPassword = await bcrypt.hash(password, 10);
 
-            let generateAccountNo = (Math.floor(Math.random() * 90000) + 10000).toString();
+            let generateAccountNo = (Math.floor(Math.random() * 900000) + 100000).toString();
 
             let createClientAccount = await getRepository(Accounts)
                 .createQueryBuilder()
@@ -32,22 +34,29 @@ export const clientSignUp = async (req: Request, res: Response) => {
                     accountStatusId: 2
                 }).execute()
 
-            console.log(createClientAccount);
-
             let createNewClient = await getRepository(Clients)
                 .createQueryBuilder()
                 .insert()
                 .values({
                     email: email,
                     password: hashPassword,
+                    verificationOtp: verificationOTP,
                     accountsId: createClientAccount.raw.insertId
-                }).execute()
+                }).execute();
 
-            return res.status(200).json({
-                message: "SignUp Successful. Please verify your email address."
+            let sendVerificationEmail = await sendEmail({
+                to: email,
+                from: 'registration@abcbank.com',
+                subject: 'Email Verification',
+                body: `Your OTP to verify you email is ${verificationOTP}`
             });
 
-        }else {
+            return res.status(200).json({
+                message: "SignUp Successful. Please verify your email address.",
+                developmentHint: sendVerificationEmail
+            });
+
+        } else {
 
             return res.status(400).json({
                 message: "An account already exists with the provided email."
@@ -59,7 +68,66 @@ export const clientSignUp = async (req: Request, res: Response) => {
 
         console.log(e);
 
-        return res.status(500).json({ message: "Internal server error." });
+        return res.status(500).json({message: "Internal server error."});
     }
 
 };
+
+
+export const verifyEmail = async (req: Request, res: Response) => {
+
+    try {
+
+        const { email, otp} = <IVerifyEmail>req.body;
+
+
+        let fetchUser = await getRepository(Clients)
+            .createQueryBuilder("client")
+            .where("email = :email", {email})
+            .select([
+                "id",
+                "verificationOtp"
+            ])
+            .getOne()
+
+        if (fetchUser) {
+
+            if (fetchUser.verificationOtp == otp){
+
+                await getRepository(Clients)
+                    .createQueryBuilder("client")
+                    .update()
+                    .set({
+                        emailVerified: true
+                    })
+                    .where("email = :email", {email})
+                    .execute();
+
+                return res.status(200).json({
+                    message: "Email verified successfully. Your application is under review.",
+                });
+
+            } else {
+
+                return res.status(400).json({
+                    message: "Invalid OTP provided, please try again."
+                });
+
+            }
+
+        }else {
+
+            return res.status(400).json({
+                message: "Provided email not found in our records."
+            });
+
+        }
+
+    } catch (e) {
+
+        console.log(e);
+
+        return res.status(500).json({ message: "Internal server error." });
+    }
+
+}

@@ -16,6 +16,9 @@ export default class Clients {
     refreshToken: string;
 
     @Column()
+    verificationOtp: string;
+
+    @Column()
     emailVerified: boolean;
 
     @Column()

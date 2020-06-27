@@ -8,3 +8,8 @@ export default interface ISignupDTO {
     password: string,
     accountType: AccountType
 }
+
+export interface IVerifyEmail {
+    email: string,
+    otp: string
+}

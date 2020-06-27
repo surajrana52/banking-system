@@ -45,6 +45,46 @@ paths:
                 - email
                 - password
                 - accountType
+  /signup/verify-email:
+    patch:
+      summary: ''
+      operationId: patch-signup-verify-email
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    properties:
+                      message:
+                        type: string
+                  - $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                otp:
+                  type: string
+              required:
+                - email
+                - otp
+      tags:
+        - Client Signup
 components:
   schemas:
     error:
