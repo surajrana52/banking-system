@@ -1,0 +1,72 @@
+openapi: 3.0.0
+info:
+  title: Banking Application
+  version: '1.0'
+  description: ''
+servers:
+  - url: 'http://localhost:3000/api/v1'
+    description: Local
+paths:
+  /signup:
+    post:
+      summary: ''
+      operationId: post-signup
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      tags:
+        - Client Signup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                accountType:
+                  type: number
+              required:
+                - email
+                - password
+                - accountType
+components:
+  schemas:
+    error:
+      title: validationError
+      type: object
+      properties:
+        validationError:
+          type: boolean
+        errors:
+          type: object
+          properties:
+            validationErrors:
+              type: array
+              items:
+                type: object
+                properties:
+                  message:
+                    type: string
+      description: ''
+  securitySchemes:
+    Authorization:
+      type: http
+      scheme: bearer
+security:
+  - Authorization: []
