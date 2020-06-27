@@ -13,8 +13,11 @@ export default class Transactions {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @Column("decimal", { precision: 5, scale: 2 })
+    amount: number;
+
     @Column()
-    debitCredit: DebitCredit;
+    creditDebit: DebitCredit;
 
     @Column()
     createdAt: Date;
@@ -25,5 +28,5 @@ export default class Transactions {
 
     @ManyToOne(Type => TransactionType, transactionType => transactionType.transactions)
     @JoinColumn({ name: "transaction_type_id"})
-    public transactionType: TransactionType;
+    transactionType: TransactionType;
 }

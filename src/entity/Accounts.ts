@@ -39,7 +39,7 @@ export default class Accounts {
     @JoinColumn({ name: "account_type_id"})
     accountType: AccountType;
 
-    @OneToMany( Type => Transactions, transactions => transactions)
+    @OneToMany( Type => Transactions, transactions => transactions.account)
     transactions: Transactions[];
 
 }

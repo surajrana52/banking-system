@@ -9,7 +9,7 @@ export default class TransactionType {
     id: number;
 
     @Column()
-    status: string;
+    type: string;
 
     @Column()
     description: string;

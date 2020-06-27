@@ -13,5 +13,6 @@ router.patch('/signup/verify-email', requestValidator(signupSchema.verifyEmailSc
 router.post('/login', requestValidator(loginSchema.schema), loginController.clientLogin);
 
 router.get('/account', authentication, accountController.getAccountDetails);
+router.get('/account/transactions', authentication, accountController.getAccountTransactions);
 
 export default router;
