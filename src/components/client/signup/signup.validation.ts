@@ -9,3 +9,12 @@ export const schema = {
     })
 
 }
+
+export const verifyEmailSchema = {
+
+    body: Joi.object({
+        email: Joi.string().required(),
+        otp: Joi.string().required(),
+    })
+
+}

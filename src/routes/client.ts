@@ -6,7 +6,7 @@ import {loginController, loginSchema} from '../components/client/login'
 const router: Router = Router();
 
 router.post('/signup', requestValidator(signupSchema.schema), signupController.clientSignUp);
-router.patch('/signup/verify-email', requestValidator(signupSchema.schema), signupController.clientSignUp);
+router.patch('/signup/verify-email', requestValidator(signupSchema.verifyEmailSchema), signupController.verifyEmail);
 
 router.post('/login', requestValidator(loginSchema.schema), loginController.clientLogin);
 

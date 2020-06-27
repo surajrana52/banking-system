@@ -85,10 +85,13 @@ export const verifyEmail = async (req: Request, res: Response) => {
             .createQueryBuilder("client")
             .where("email = :email", {email})
             .select([
-                "id",
-                "verificationOtp"
+                "client.id",
+                "client.email",
+                "client.verificationOtp"
             ])
-            .getOne()
+            .getOne();
+
+        console.log(fetchUser);
 
         if (fetchUser) {
 
