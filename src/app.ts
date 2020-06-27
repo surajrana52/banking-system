@@ -15,6 +15,6 @@ morgan.token('body', function (req: Request) { return JSON.stringify(req.body) }
 
 app.use(morgan(':method :url :remote-addr :body :status :response-time ms'));
 
-app.use('api/v1/', clientRoutes);
+app.use('/api/v1', clientRoutes);
 
 export default app;

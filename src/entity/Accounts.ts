@@ -17,4 +17,10 @@ export default class Accounts {
 
     @Column()
     updatedAt: Date;
+
+    @Column({name: 'account_type_id'})
+    accountTypeId: number;
+
+    @Column({name: 'account_status_id'})
+    accountStatusId: number;
 }

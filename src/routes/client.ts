@@ -1,13 +1,9 @@
 import { Router, Request, Response } from "express";
+import requestValidator from '../middlewares/validation/joiValidator';
+import {signupController, signupSchema} from '../components/client/signup'
 
 const router: Router = Router();
 
-router.post('/login', (req: Request, res: Response) => {
-
-    return res.json({
-        message: "Successfully created."
-    });
-
-});
+router.post('/signup', requestValidator(signupSchema.schema), signupController.clientSignUp);
 
 export default router;
