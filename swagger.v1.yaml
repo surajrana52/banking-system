@@ -9,7 +9,7 @@ servers:
 paths:
   /signup:
     post:
-      summary: ''
+      summary: Signup
       operationId: post-signup
       responses:
         '200':
@@ -47,7 +47,7 @@ paths:
                 - accountType
   /signup/verify-email:
     patch:
-      summary: ''
+      summary: Verify Email
       operationId: patch-signup-verify-email
       responses:
         '200':
@@ -85,6 +85,147 @@ paths:
                 - otp
       tags:
         - Client Signup
+  /login:
+    post:
+      summary: Login
+      operationId: post-login
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                  refreshToken:
+                    type: string
+              examples: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    properties:
+                      message:
+                        type: string
+                  - $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      tags:
+        - Client Login
+  /account:
+    get:
+      summary: Get account details
+      tags:
+        - Client Account
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  email:
+                    type: string
+                  account:
+                    type: object
+                    properties:
+                      accNumber:
+                        type: string
+                      balance:
+                        type: number
+                      accountStatus:
+                        type: object
+                        properties:
+                          status:
+                            type: string
+      operationId: get-account
+      security:
+        - Authorization: []
+  /account/transactions:
+    get:
+      summary: Get account transactions
+      tags:
+        - Client Account
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  '':
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        amount:
+                          type: string
+                        creditDebit:
+                          type: string
+                        createdAt:
+                          type: string
+                        transactionType:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                            description:
+                              type: string
+      operationId: get-account-transactions
+      security:
+        - Authorization: []
+  /withdrawel:
+    post:
+      summary: Balance withdrawal
+      operationId: post-withdrawel
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    properties:
+                      message:
+                        type: string
+                  - $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: number
+      tags:
+        - Client Withdrawal
 components:
   schemas:
     error:

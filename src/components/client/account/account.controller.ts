@@ -1,7 +1,75 @@
 import {Request, Response} from "express";
-import {getRepository} from "typeorm";
+import {getManager, getRepository} from "typeorm";
 import Clients from "../../../entity/Clients";
-import IGetAccountDTO from "./account.dto";
+import IGetAccountDTO, {IWithdrawal} from "./account.dto";
+import Accounts from "../../../entity/Accounts";
+import Transactions, {DebitCredit} from "../../../entity/Transactions";
+
+export const makeWithdrawal = async (req: Request, res: Response) => {
+
+    try {
+
+        const { amount, authUserId } = <IWithdrawal>req.body;
+
+        await getManager().transaction(async transactionalEntityManager => {
+
+            let getCurrentBalance = await transactionalEntityManager.getRepository(Clients)
+                .createQueryBuilder("client")
+                .innerJoin("client.account", "account")
+                .select([
+                    "client.id",
+                    "account.id",
+                    "account.balance",
+                ])
+                .setLock("pessimistic_write")
+                .where("client.id = :id", {id: authUserId})
+                .getOne();
+
+           if (getCurrentBalance.account.balance >= amount){
+
+               await transactionalEntityManager.getRepository(Accounts)
+                   .createQueryBuilder()
+                   .update()
+                   .set({ balance: () => `balance - ${amount}` })
+                   .where("id = :id", {id: getCurrentBalance.account.id})
+                   .execute();
+
+               await transactionalEntityManager.getRepository(Transactions)
+                   .createQueryBuilder()
+                   .insert()
+                   .values({
+                       amount: amount,
+                       creditDebit: DebitCredit.DEBIT,
+                       accountId: getCurrentBalance.account.id,
+                       transactionTypeId: 1
+                   })
+                   .execute();
+
+               return res.json({
+                   message: "Withdrawal successful."
+               });
+
+           }else {
+
+               return res.status(400).json({
+                   message: "Insufficient balance."
+               });
+
+           }
+
+        });
+
+        return true;
+
+    } catch (e) {
+
+        console.log(e);
+
+        return res.status(500).json({ message: "Internal server error." });
+    }
+
+}
+
 
 export const getAccountDetails = async (req: Request, res: Response) => {
 

@@ -22,9 +22,15 @@ export default class Transactions {
     @Column()
     createdAt: Date;
 
+    @Column({name: "transaction_type_id"})
+    transactionTypeId: number;
+
+    @Column({name: "accounts_id"})
+    accountId: number;
+
     @ManyToOne(Type => Accounts, account => account.transactions)
     @JoinColumn({ name: "accounts_id"})
-    public account: Accounts;
+    account: Accounts;
 
     @ManyToOne(Type => TransactionType, transactionType => transactionType.transactions)
     @JoinColumn({ name: "transaction_type_id"})

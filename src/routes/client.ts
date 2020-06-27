@@ -15,4 +15,6 @@ router.post('/login', requestValidator(loginSchema.schema), loginController.clie
 router.get('/account', authentication, accountController.getAccountDetails);
 router.get('/account/transactions', authentication, accountController.getAccountTransactions);
 
+router.post('/withdrawal', authentication, accountController.makeWithdrawal)
+
 export default router;
