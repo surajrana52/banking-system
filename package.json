@@ -1,0 +1,60 @@
+{
+  "name": "bank-application",
+  "version": "1.0.0",
+  "description": "Banking application using node.js, express, typeScript",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/surajrana52/banking-system"
+  },
+  "author": "Suraj Rana",
+  "scripts": {
+    "start": "npm run serve",
+    "test": "jest",
+    "build": "npm run build-ts",
+    "serve": "node dist/server.js",
+    "watch-node": "nodemon dist/server.js",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
+    "build-ts": "tsc",
+    "watch-ts": "tsc -w",
+    "debug": "npm run build && npm run watch-debug",
+    "serve-debug": "nodemon --inspect dist/server.js",
+    "watch-debug": "concurrently -k -p \"[{name}]\" -n \"Sass,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\""
+  },
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.1.0",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.25",
+    "uuid": "^8.1.0",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/concurrently": "^5.2.0",
+    "@types/express": "^4.17.6",
+    "@types/hapi__joi": "^17.1.0",
+    "@types/jest": "^25.2.3",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/morgan": "^1.9.0",
+    "@types/node": "^14.0.5",
+    "@types/passport": "^1.0.3",
+    "@types/passport-jwt": "^3.0.3",
+    "@types/passport-local": "^1.0.33",
+    "@types/uuid": "^8.0.0",
+    "@types/winston": "^2.4.4",
+    "concurrently": "^5.2.0",
+    "jest": "^26.0.1",
+    "nodemon": "^2.0.4",
+    "ts-jest": "^26.0.0",
+    "ts-node": "^8.10.1",
+    "typescript": "^3.9.3"
+  }
+}
