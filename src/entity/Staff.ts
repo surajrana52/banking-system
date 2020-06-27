@@ -7,7 +7,7 @@ export default class Staff {
     id: number;
 
     @Column()
-    email: string;
+    username: string;
 
     @Column()
     password: string;

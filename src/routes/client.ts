@@ -1,4 +1,4 @@
-import { Router, Request, Response } from "express";
+import {Router} from "express";
 import requestValidator from '../middlewares/validation/joiValidator';
 import authentication from "../middlewares/authentication/clientAuthorization";
 import {signupController, signupSchema} from '../components/client/signup';
