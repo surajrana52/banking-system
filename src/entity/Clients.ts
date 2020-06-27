@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn} from "typeorm";
+import Accounts from "./Accounts";
 
 @Entity({ name: "clients" })
 export default class Clients {
@@ -35,4 +36,8 @@ export default class Clients {
 
     @Column({name: 'accounts_id'})
     accountsId: number
+
+    @OneToOne(type => Accounts, account => account.client)
+    @JoinColumn({name: 'accounts_id'})
+    account: Accounts;
 }

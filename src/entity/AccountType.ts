@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from "typeorm";
+import Accounts from "./Accounts";
 
 @Entity({ name: "account_type" })
 export default class AccountType {
@@ -11,4 +12,7 @@ export default class AccountType {
 
     @Column()
     description: string;
+
+    @OneToMany(type => Accounts, account => account.accountStatus)
+    account: Accounts[];
 }

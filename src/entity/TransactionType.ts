@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from "typeorm";
+import Accounts from "./Accounts";
+import Transactions from "./Transactions";
 
 @Entity({ name: "transaction_type" })
 export default class TransactionType {
@@ -11,4 +13,7 @@ export default class TransactionType {
 
     @Column()
     description: string;
+
+    @OneToMany(type => Transactions, transactions => transactions.transactionType)
+    transactions: Transactions[];
 }

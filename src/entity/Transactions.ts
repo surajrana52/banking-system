@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn} from "typeorm";
+import Accounts from "./Accounts";
+import TransactionType from "./TransactionType";
 
 export enum DebitCredit {
     DEBIT = "DEBIT",
@@ -16,4 +18,12 @@ export default class Transactions {
 
     @Column()
     createdAt: Date;
+
+    @ManyToOne(Type => Accounts, account => account.transactions)
+    @JoinColumn({ name: "accounts_id"})
+    public account: Accounts;
+
+    @ManyToOne(Type => TransactionType, transactionType => transactionType.transactions)
+    @JoinColumn({ name: "transaction_type_id"})
+    public transactionType: TransactionType;
 }
