@@ -3,7 +3,7 @@ config({ path: '.env' });
 import express, {Request} from "express";
 import morgan from "morgan";
 import passportJwtStrategy from "./config/passportJwtStrategy";
-import clientRoutes from './routes/client'
+import clientRoutes from './routes/client';
 import passport from "passport";
 
 const app = express();

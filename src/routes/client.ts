@@ -16,5 +16,6 @@ router.get('/account', authentication, accountController.getAccountDetails);
 router.get('/account/transactions', authentication, accountController.getAccountTransactions);
 
 router.post('/withdrawal', authentication, accountController.makeWithdrawal)
+router.post('/deposit', authentication, accountController.makeDeposit)
 
 export default router;

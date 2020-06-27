@@ -226,6 +226,45 @@ paths:
                   type: number
       tags:
         - Client Withdrawal
+  /deposit:
+    post:
+      summary: Make a deposit
+      operationId: post-deposit
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    properties:
+                      message:
+                        type: string
+                  - $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: number
+              required:
+                - amount
+      tags:
+        - Client Withdrawal
 components:
   schemas:
     error:
