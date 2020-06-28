@@ -1,0 +1,1605 @@
+{
+	"info": {
+		"_postman_id": "f42cae25-f2c7-45ea-bdf6-f44e54ec49c3",
+		"name": "Banking Application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Client Signup",
+			"item": [
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"password\": \"<string>\",\n    \"accountType\": \"<number>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/signup",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"fullName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"password\": \"<string>\",\n    \"accountType\": \"<number>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/signup",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"signup"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"validationError\": \"<boolean>\",\n \"errors\": {\n  \"validationErrors\": [\n   {\n    \"message\": \"<string>\"\n   },\n   {\n    \"message\": \"<string>\"\n   }\n  ]\n }\n}"
+						},
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"fullName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"password\": \"<string>\",\n    \"accountType\": \"<number>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/signup",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"signup"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Verify Email",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"<string>\",\n    \"otp\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/signup/verify-email",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"signup",
+								"verify-email"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"<string>\",\n    \"otp\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/signup/verify-email",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"signup",
+										"verify-email"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\"\n}"
+						},
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"<string>\",\n    \"otp\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/signup/verify-email",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"signup",
+										"verify-email"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\"\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Client Login",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"accessToken\": \"<string>\",\n \"refreshToken\": \"<string>\"\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Refresh accessToken",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accessToken\": \"<string>\",\n    \"refreshToken\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/login/refresh-token",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"login",
+								"refresh-token"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accessToken\": \"<string>\",\n    \"refreshToken\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/login/refresh-token",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login",
+										"refresh-token"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"accessToken\": \"<string>\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/logout",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\"\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Client Account",
+			"item": [
+				{
+					"name": "Get account details",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/account",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"account"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/account",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"id\": \"<integer>\",\n \"email\": \"<string>\",\n \"account\": {\n  \"accNumber\": \"<string>\",\n  \"balance\": \"<number>\",\n  \"accountStatus\": {\n   \"status\": \"<string>\"\n  }\n }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get account transactions",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/account/transactions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"account",
+								"transactions"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/account/transactions",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"transactions"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"\": [\n  {\n   \"amount\": \"<string>\",\n   \"creditDebit\": \"<string>\",\n   \"createdAt\": \"<string>\",\n   \"transactionType\": {\n    \"type\": \"<string>\",\n    \"description\": \"<string>\"\n   }\n  },\n  {\n   \"amount\": \"<string>\",\n   \"creditDebit\": \"<string>\",\n   \"createdAt\": \"<string>\",\n   \"transactionType\": {\n    \"type\": \"<string>\",\n    \"description\": \"<string>\"\n   }\n  }\n ]\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Client Withdrawal",
+			"item": [
+				{
+					"name": "Balance withdrawal",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": \"<number>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/withdrawal",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"withdrawal"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"amount\": \"<number>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/withdrawal",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"withdrawal"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\"\n}"
+						},
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"amount\": \"<number>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/withdrawal",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"withdrawal"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Make a deposit",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": \"<number>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/deposit",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"deposit"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"amount\": \"<number>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/deposit",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"deposit"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\"\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"amount\": \"<number>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/deposit",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"deposit"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\"\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Staff SignUp",
+			"item": [
+				{
+					"name": "SignUp",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/staff/signup",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"staff",
+								"signup"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/staff/signup",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"staff",
+										"signup"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\"\n}"
+						},
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/staff/signup",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"staff",
+										"signup"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\"\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Staff Login",
+			"item": [
+				{
+					"name": "Staff login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/staff/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"staff",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/staff/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"staff",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\"\n}"
+						},
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/staff/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"staff",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"accessToken\": \"<string>\"\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Staff Accounts",
+			"item": [
+				{
+					"name": "Get new registerations",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/staff/account/new-registrations",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"staff",
+								"account",
+								"new-registrations"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/staff/account/new-registrations",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"staff",
+										"account",
+										"new-registrations"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"id\": \"<number>\",\n \"fullName\": \"<string>\",\n \"email\": \"<string>\",\n \"emailVerified\": \"<string>\",\n \"accepted\": \"<string>\",\n \"createdAt\": \"<string>\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Accept Application",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/staff/account/accept/:status/:userId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"staff",
+								"account",
+								"accept",
+								":status",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "status"
+								},
+								{
+									"key": "userId"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/staff/account/accept/:status/:userId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"staff",
+										"account",
+										"accept",
+										":status",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "status"
+										},
+										{
+											"key": "userId"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\"\n}"
+						},
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/staff/account/accept/:status/:userId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"staff",
+										"account",
+										"accept",
+										":status",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "status"
+										},
+										{
+											"key": "userId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get account details with user id",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/staff/account/user/:userId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"staff",
+								"account",
+								"user",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/staff/account/user/:userId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"staff",
+										"account",
+										"user",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"id\": \"<number>\",\n \"fullName\": \"<string>\",\n \"email\": \"<string>\",\n \"account\": {\n  \"accNumber\": \"<string>\",\n  \"balance\": \"<string>\",\n  \"accountStatus\": {\n   \"status\": \"<string>\"\n  }\n }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get account by account no",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/staff/account/:accountNo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"staff",
+								"account",
+								":accountNo"
+							],
+							"variable": [
+								{
+									"key": "accountNo"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/staff/account/:accountNo",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"staff",
+										"account",
+										":accountNo"
+									],
+									"variable": [
+										{
+											"key": "accountNo"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"id\": \"<number>\",\n \"fullName\": \"<string>\",\n \"email\": \"<string>\",\n \"account\": {\n  \"accNumber\": \"<string>\",\n  \"balance\": \"<string>\",\n  \"accountStatus\": {\n   \"status\": \"<string>\"\n  }\n }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get all account | sort by status",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/staff/account?sort=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"staff",
+								"account"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/staff/account?sort=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"staff",
+										"account"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n {\n  \"id\": \"<integer>\",\n  \"fullName\": \"<string>\",\n  \"email\": \"<string>\",\n  \"account\": {\n   \"accNumber\": \"<string>\",\n   \"balance\": \"<string>\",\n   \"accountStatus\": {\n    \"status\": \"<string>\"\n   }\n  }\n },\n {\n  \"id\": \"<integer>\",\n  \"fullName\": \"<string>\",\n  \"email\": \"<string>\",\n  \"account\": {\n   \"accNumber\": \"<string>\",\n   \"balance\": \"<string>\",\n   \"accountStatus\": {\n    \"status\": \"<string>\"\n   }\n  }\n }\n]"
+						}
+					]
+				},
+				{
+					"name": "Delete an account",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/staff/account/:userId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"staff",
+								"account",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/staff/account/:userId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"staff",
+										"account",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\"\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/staff/account/:userId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"staff",
+										"account",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"message\": \"<string>\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Make a deposit",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": \"<number>\",\n    \"userId\": \"<integer>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/staff/account/deposit",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"staff",
+								"account",
+								"deposit"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"amount\": \"<number>\",\n    \"userId\": \"<integer>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/staff/account/deposit",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"staff",
+										"account",
+										"deposit"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Get transactions",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/staff/account/transactions/:pageNo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"staff",
+								"account",
+								"transactions",
+								":pageNo"
+							],
+							"variable": [
+								{
+									"key": "pageNo"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/staff/account/transactions/:pageNo",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"staff",
+										"account",
+										"transactions",
+										":pageNo"
+									],
+									"variable": [
+										{
+											"key": "pageNo"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n {\n  \"id\": \"<integer>\",\n  \"amount\": \"<number>\",\n  \"creditDebit\": \"<string>\",\n  \"createdAt\": \"<string>\",\n  \"transactionType\": {\n   \"type\": \"<string>\",\n   \"description\": \"<string>\"\n  },\n  \"account\": {\n   \"id\": \"<integer>\",\n   \"accNumber\": \"<string>\",\n   \"balance\": \"<number>\",\n   \"client\": {\n    \"fullName\": \"<string>\",\n    \"email\": \"<string>\"\n   }\n  }\n },\n {\n  \"id\": \"<integer>\",\n  \"amount\": \"<number>\",\n  \"creditDebit\": \"<string>\",\n  \"createdAt\": \"<string>\",\n  \"transactionType\": {\n   \"type\": \"<string>\",\n   \"description\": \"<string>\"\n  },\n  \"account\": {\n   \"id\": \"<integer>\",\n   \"accNumber\": \"<string>\",\n   \"balance\": \"<number>\",\n   \"client\": {\n    \"fullName\": \"<string>\",\n    \"email\": \"<string>\"\n   }\n  }\n }\n]"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Staff Analytics",
+			"item": [
+				{
+					"name": "Get top spender",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/staff/analytics/top-spender",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"staff",
+								"analytics",
+								"top-spender"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/staff/analytics/top-spender",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"staff",
+										"analytics",
+										"top-spender"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"data\": [\n  {\n   \"fullName\": \"<string>\",\n   \"email\": \"<string>\",\n   \"amount\": \"<number>\"\n  },\n  {\n   \"fullName\": \"<string>\",\n   \"email\": \"<string>\",\n   \"amount\": \"<number>\"\n  }\n ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get total money received",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/staff/analytics/receivable/:groupBy",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"staff",
+								"analytics",
+								"receivable",
+								":groupBy"
+							],
+							"variable": [
+								{
+									"key": "groupBy"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/staff/analytics/receivable/:groupBy",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"staff",
+										"analytics",
+										"receivable",
+										":groupBy"
+									],
+									"variable": [
+										{
+											"key": "groupBy"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"data\": [\n  {\n   \"receivedAmount\": \"<number>\",\n   \"day\": \"<string>\"\n  },\n  {\n   \"receivedAmount\": \"<number>\",\n   \"day\": \"<string>\"\n  }\n ]\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "bearer"
+	},
+	"variable": [
+		{
+			"id": "baseUrl",
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
