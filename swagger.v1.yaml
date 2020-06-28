@@ -1,0 +1,765 @@
+openapi: 3.0.0
+info:
+  title: Banking Application
+  version: '1.0'
+  description: ''
+servers:
+  - url: 'http://localhost:3000/api/v1'
+    description: Clients
+paths:
+  /signup:
+    post:
+      summary: Signup
+      operationId: post-signup
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      tags:
+        - Client Signup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fullName:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                accountType:
+                  type: number
+              required:
+                - fullName
+                - email
+                - password
+                - accountType
+  /signup/verify-email:
+    patch:
+      summary: Verify Email
+      operationId: patch-signup-verify-email
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    properties:
+                      message:
+                        type: string
+                  - $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                otp:
+                  type: string
+              required:
+                - email
+                - otp
+      tags:
+        - Client Signup
+  /login:
+    post:
+      summary: Login
+      operationId: post-login
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                  refreshToken:
+                    type: string
+              examples: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    properties:
+                      message:
+                        type: string
+                  - $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      tags:
+        - Client Login
+  /account:
+    get:
+      summary: Get account details
+      tags:
+        - Client Account
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  email:
+                    type: string
+                  account:
+                    type: object
+                    properties:
+                      accNumber:
+                        type: string
+                      balance:
+                        type: number
+                      accountStatus:
+                        type: object
+                        properties:
+                          status:
+                            type: string
+      operationId: get-account
+      security:
+        - Authorization: []
+  /account/transactions:
+    get:
+      summary: Get account transactions
+      tags:
+        - Client Account
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  '':
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        amount:
+                          type: string
+                        creditDebit:
+                          type: string
+                        createdAt:
+                          type: string
+                        transactionType:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                            description:
+                              type: string
+      operationId: get-account-transactions
+      security:
+        - Authorization: []
+  /withdrawal:
+    post:
+      summary: Balance withdrawal
+      operationId: post-withdrawel
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    properties:
+                      message:
+                        type: string
+                  - $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: number
+      tags:
+        - Client Withdrawal
+      security:
+        - Authorization: []
+    parameters: []
+  /deposit:
+    post:
+      summary: Make a deposit
+      operationId: post-deposit
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    properties:
+                      message:
+                        type: string
+                  - $ref: '#/components/schemas/error'
+      security:
+        - Authorization: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: number
+              required:
+                - amount
+      tags:
+        - Client Withdrawal
+  /staff/signup:
+    post:
+      summary: SignUp
+      operationId: post-staff-signup
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    properties:
+                      message:
+                        type: string
+                  - $ref: '#/components/schemas/error'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              required:
+                - username
+                - password
+      tags:
+        - Staff SignUp
+  /staff/login:
+    post:
+      summary: Staff login
+      operationId: post-staff-login
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    properties:
+                      message:
+                        type: string
+                  - $ref: '#/components/schemas/error'
+      tags:
+        - Staff Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              required:
+                - username
+                - password
+  /staff/account/new-registrations:
+    get:
+      summary: Get new registerations
+      tags:
+        - Staff Accounts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  fullName:
+                    type: string
+                  email:
+                    type: string
+                  emailVerified:
+                    type: string
+                  accepted:
+                    type: string
+                  createdAt:
+                    type: string
+      operationId: get-staff-account-new-registrations
+      description: ''
+      security:
+        - Authorization: []
+    parameters: []
+  '/staff/account/accept/:status/:userId':
+    patch:
+      summary: Accept Application
+      tags:
+        - Staff Accounts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    properties:
+                      message:
+                        type: string
+                  - $ref: '#/components/schemas/error'
+      operationId: 'get-staff-account-accept-:status-:userId'
+      parameters: []
+      security:
+        - Authorization: []
+  '/staff/account/user/:userId':
+    get:
+      summary: Get account details with user id
+      tags:
+        - Staff Accounts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  fullName:
+                    type: string
+                  email:
+                    type: string
+                  account:
+                    type: object
+                    properties:
+                      accNumber:
+                        type: string
+                      balance:
+                        type: string
+                      accountStatus:
+                        type: object
+                        properties:
+                          status:
+                            type: string
+      operationId: 'get-staff-account-user-:userId'
+      security:
+        - Authorization: []
+      parameters: []
+  '/staff/account/:accountNo':
+    get:
+      summary: Get account by account no
+      tags:
+        - Staff Accounts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  fullName:
+                    type: string
+                  email:
+                    type: string
+                  account:
+                    type: object
+                    properties:
+                      accNumber:
+                        type: string
+                      balance:
+                        type: string
+                      accountStatus:
+                        type: object
+                        properties:
+                          status:
+                            type: string
+      operationId: 'get-staff-account-:accountNo'
+      security:
+        - Authorization: []
+  /staff/account:
+    get:
+      summary: 'Get all account | sort by status'
+      tags:
+        - Staff Accounts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    fullName:
+                      type: string
+                    email:
+                      type: string
+                    account:
+                      type: object
+                      properties:
+                        accNumber:
+                          type: string
+                        balance:
+                          type: string
+                        accountStatus:
+                          type: object
+                          properties:
+                            status:
+                              type: string
+      operationId: get-staff-account
+      security:
+        - Authorization: []
+      description: ''
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: sort
+  '/staff/account/:userId':
+    delete:
+      summary: Delete an account
+      operationId: 'delete-staff-account-:userId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    properties:
+                      message:
+                        type: string
+                  - $ref: '#/components/schemas/error'
+      tags:
+        - Staff Accounts
+      parameters: []
+      security:
+        - Authorization: []
+  /staff/account/deposit:
+    post:
+      summary: Make a deposit
+      operationId: post-staff-account-deposit
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Staff Accounts
+      security:
+        - Authorization: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: number
+                userId:
+                  type: integer
+              required:
+                - amount
+                - userId
+  '/staff/account/transactions/:pageNo':
+    parameters: []
+    get:
+      summary: Get transactions
+      operationId: 'get-staff-account-transactions-:pageNo'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    amount:
+                      type: number
+                    creditDebit:
+                      type: string
+                    createdAt:
+                      type: string
+                    transactionType:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                        description:
+                          type: string
+                    account:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        accNumber:
+                          type: string
+                        balance:
+                          type: number
+                        client:
+                          type: object
+                          properties:
+                            fullName:
+                              type: string
+                            email:
+                              type: string
+      security:
+        - Authorization: []
+      tags:
+        - Staff Accounts
+      description: ''
+  /staff/analytics/top-spender:
+    get:
+      summary: Get top spender
+      tags:
+        - Staff Analytics
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        fullName:
+                          type: string
+                        email:
+                          type: string
+                        amount:
+                          type: number
+      operationId: get-staff-analytics-top-spender
+      security:
+        - Authorization: []
+  '/staff/analytics/receivable/:groupBy':
+    get:
+      summary: Get total money received
+      tags:
+        - Staff Analytics
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      anyOf:
+                        - properties:
+                            receivedAmount:
+                              type: number
+                            day:
+                              type: string
+                        - properties:
+                            receivedAmount:
+                              type: number
+                            week:
+                              type: string
+                        - properties:
+                            receivedAmount:
+                              type: number
+                            month:
+                              type: string
+                      type: object
+      operationId: 'get-staff-analytics-receivable-:groupBy'
+      security:
+        - Authorization: []
+        - Authorization: []
+  /login/refresh-token:
+    post:
+      summary: Refresh accessToken
+      operationId: post-login-refresh-token
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+      tags:
+        - Client Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                accessToken:
+                  type: string
+                refreshToken:
+                  type: string
+              required:
+                - accessToken
+                - refreshToken
+  /logout:
+    post:
+      summary: Logout
+      operationId: post-logout
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+      tags:
+        - Client Login
+      security:
+        - Authorization: []
+components:
+  schemas:
+    error:
+      title: validationError
+      type: object
+      properties:
+        validationError:
+          type: boolean
+        errors:
+          type: object
+          properties:
+            validationErrors:
+              type: array
+              items:
+                type: object
+                properties:
+                  message:
+                    type: string
+      description: ''
+  securitySchemes:
+    Authorization:
+      type: http
+      scheme: bearer
+security:
+  - Authorization: []
