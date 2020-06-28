@@ -10,7 +10,7 @@ export const clientSignUp = async (req: Request, res: Response) => {
 
     try {
 
-        const {email, password, accountType} = <ISignupDTO>req.body;
+        const {fullName, email, password, accountType} = <ISignupDTO>req.body;
 
         let checkIfUserAlreadyRegistered = await getRepository(Clients)
             .createQueryBuilder("client")
@@ -38,6 +38,7 @@ export const clientSignUp = async (req: Request, res: Response) => {
                 .createQueryBuilder()
                 .insert()
                 .values({
+                    fullName: fullName,
                     email: email,
                     password: hashPassword,
                     verificationOtp: verificationOTP,

@@ -8,6 +8,9 @@ export default class Clients {
     id: number;
 
     @Column()
+    fullName: string;
+
+    @Column()
     email: string;
 
     @Column()

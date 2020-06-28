@@ -1,6 +1,11 @@
 import 'reflect-metadata';
+import {redis} from './config/redis';
 import { createConnection } from 'typeorm';
 import app from './app';
+
+redis.on('ready', () => {
+    console.log("Redis is ready for accepting commands.")
+});
 
 (async () => {
 

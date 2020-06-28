@@ -4,6 +4,7 @@ export enum AccountType {
 }
 
 export default interface ISignupDTO {
+    fullName: string,
     email: string,
     password: string,
     accountType: AccountType
